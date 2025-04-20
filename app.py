@@ -8,7 +8,6 @@ from email_pipeline import process_email_pipeline
 # Load environment variables
 load_dotenv()
 
-# Create FastAPI app instance
 app = FastAPI(title="Email Processing API")
 
 # Add CORS middleware
@@ -48,9 +47,8 @@ async def health_check():
     """
     return {"status": "healthy"}
 
-# Create ASGI application instance for Gunicorn
 asgi_app = app
 
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run(app, host="0.0.0.0", port=8000) 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000) 
