@@ -1,0 +1,5 @@
+[server]
+maxUploadSize = 0  # 0 means unlimited
+
+[client]
+showErrorDetails = true 
