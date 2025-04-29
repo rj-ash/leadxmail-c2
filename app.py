@@ -21,7 +21,7 @@ app.add_middleware(
 
 @app.get("/")
 def root_route():
-    return {"message": "Welcome to compnent 3 of LeadXMail pipeling, Email generation and validation. Please route to /process-emails to process emails"}
+    return {"message": "Welcome to compnent2 of LeadXMail pipeling, Email generation and validation. Please route to /process-emails to process emails"}
 
 @app.post("/process-emails")
 async def process_emails(leads: List[Dict]):
@@ -49,6 +49,6 @@ async def health_check():
 
 asgi_app = app
 
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run(app, host="0.0.0.0", port=8000) 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000) 

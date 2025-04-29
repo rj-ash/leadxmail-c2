@@ -84,20 +84,28 @@ def probable_mail_gen_for_1_lead(lead_detail):
 
     domain = "@" + lead_detail['curr_company_url'].split("//")[-1].split("/")[0].replace("www.", "")
     
-    # Generate valid combinations upfront
-    local_part = set()
-    for fn in [first, first[0] if first else "", ""]:
-        for ln in [last, last[0] if last else "", ""]:
-            for sep in [".", "_", ""]:
-                if fn or ln:  # Skip empty combinations
-                    local_part.add(f"{fn}{sep}{ln}")
-                    local_part.add(f"{ln}{sep}{fn}")
-    
-    # Filter invalid patterns
+    # Generate only the specified combinations
     emails = []
-    for lp in local_part:
-        if not lp.startswith((".", "_")) and not lp.endswith((".", "_")) and len(lp) > 1:
-            emails.append(lp + domain)
+    
+    # First name combinations
+    if first and last:
+        emails.extend([
+            f"{first}.{last}{domain}",
+            f"{first}_{last}{domain}",
+            f"{first}{last}{domain}",
+            f"{first}.{last[0]}{domain}",
+            f"{first}_{last[0]}{domain}",
+            f"{first}{last[0]}{domain}",
+            f"{first[0]}{last}{domain}",
+            f"{first[0]}.{last}{domain}",
+            f"{first[0]}_{last}{domain}",
+            f"{last}{first}{domain}",
+            f"{last}{first[0]}{domain}",
+            f"{last}.{first}{domain}",
+            f"{last}_{first}{domain}",
+            f"{last}.{first[0]}{domain}",
+            f"{last}_{first[0]}{domain}"
+        ])
     
     return emails
 
